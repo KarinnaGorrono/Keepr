@@ -43,11 +43,14 @@ namespace Keepr.Repositories
       JOIN accounts a ON a.id = k.creatorId
       WHERE k.id = @id
       ;";
+
+            //TODO Still getting an error on this one?!?!
+
             return _db.Query<Keep, Profile, Keep>(sql, (keep, account) =>
-            {
-                keep.Creator = account;
-                return keep;
-            }, new { id }).FirstOrDefault();
+               {
+                   keep.Creator = account;
+                   return keep;
+               }, new { id }).FirstOrDefault();
         }
 
         internal object GetAllKeeps()
