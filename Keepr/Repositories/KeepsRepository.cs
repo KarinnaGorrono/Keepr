@@ -34,7 +34,7 @@ namespace Keepr.Repositories
             string sql = @"
       UPDATE keeps
       SET
-      views = views +1
+      views = views + 1
       WHERE id = @id;
       SELECT 
       k.*,
@@ -45,6 +45,7 @@ namespace Keepr.Repositories
       ;";
 
             //TODO Still getting an error on this one?!?!
+            // trying to get keep count to decrement
 
             return _db.Query<Keep, Profile, Keep>(sql, (keep, account) =>
                {
@@ -115,10 +116,10 @@ namespace Keepr.Repositories
 
         }
 
-        internal void Delete(int id)
+        internal void Delete(int keepId)
         {
-            string sql = @"DELETE FROM keeps WHERE id = @id";
-            _db.Execute(sql, new { id });
+            string sql = @"DELETE FROM keeps WHERE id = @keepId LIMIT 1;";
+            _db.Execute(sql, new { keepId });
         }
     }
 }

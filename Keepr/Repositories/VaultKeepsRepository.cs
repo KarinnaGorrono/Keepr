@@ -58,14 +58,25 @@ namespace Keepr.Repositories
             return _db.QueryFirstOrDefault<VaultKeep>(sql, new { id });
         }
 
-        internal void Delete(int id)
+
+
+
+        // TODO Got the keeps to decrement!! but now vaultkeep delete is not passing tests  😢
+        internal void Delete(int id, int keepId)
         {
-            string sql = @"DELETE FROM vaultkeeps WHERE id = @Id;";
-            int rows = _db.Execute(sql, new { id });
-            if (rows <= 0)
+            string sql = @"
+            UPDATE keeps
+            SET
+            keeps = keeps -1
+            WHERE id = @keepId;
+        DELETE FROM vaultkeeps WHERE id = @id LIMIT 1;";
+            int rows = _db.Execute(sql, new { id, keepId });
+            if (rows == 0)
             {
-                throw new Exception("Invalid ID");
+                throw new Exception("Invalid Id");
             }
+
         }
+
     }
 }

@@ -68,7 +68,10 @@ namespace Keepr.Services
             {
                 throw new Exception("Unauthorized to Delete");
             }
-            _vaultKeepsRepo.Delete(id);
+            _vaultKeepsRepo.Delete(id, vaultKeep.KeepId);
         }
+
+
+
     }
 }
