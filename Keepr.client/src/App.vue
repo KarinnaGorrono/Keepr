@@ -1,15 +1,13 @@
 <template>
-  <header>
-    <Navbar />
+  <header class="container-fluid">
+    <NavigationBar class="row p-0 fixed-top" />
   </header>
-  <main>
-    <router-view />
-  </main>
-  <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
+  <main class="container-fluid back scrollbar">
+    <div class="row">
+      <router-view />
     </div>
-  </footer>
+  </main>
+  <footer></footer>
 </template>
 
 <script>
@@ -26,5 +24,36 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
-
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
+.font {
+  font-family: "Comfortaa", cursive;
+}
+.back {
+  background-color: white;
+}
+// .scrollbar {
+//   overflow-y: scroll;
+//   height: 100vh;
+// }
+// .scrollbar::-webkit-scrollbar {
+//   width: 7px;
+// }
+// .scrollbar::-webkit-scrollbar-track {
+//   background: transparent;
+// }
+// .scrollbar::-webkit-scrollbar-thumb {
+//   background-color: #00e673;
+//   border-radius: 10px;
+// }
+.grow {
+  transition: all 0.2s ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.01);
+  box-shadow: 3px 5px 5px rgb(117, 117, 117);
+}
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
 </style>
