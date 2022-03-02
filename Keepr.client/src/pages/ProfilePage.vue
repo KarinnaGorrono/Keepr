@@ -55,7 +55,7 @@
       </div>
     </div>
   </div>
-  <KeepModal />
+  <KeepDetails />
 </template>
 
 

@@ -128,7 +128,6 @@ import { AppState } from '../AppState'
 import { vaultsService } from '../services/VaultsService'
 import Pop from '../utils/Pop'
 import { logger } from '../utils/Logger'
-import { onBeforeUnmount } from '@vue/runtime-core'
 import { Modal } from 'bootstrap'
 import { keepsService } from '../services/KeepsService'
 export default {

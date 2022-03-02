@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <KeepModal />
+    <KeepDetails />
   </div>
 </template>
 
@@ -69,13 +69,11 @@ export default {
 
 <style lang="scss" scoped>
 .masonry {
-  /* Masonry container */
   column-count: 4;
   column-gap: 1em;
 }
 
 .item {
-  /* Masonry bricks or child elements */
   background-color: #eee;
   display: inline-block;
   margin: 0 0 1em;

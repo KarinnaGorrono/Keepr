@@ -7,7 +7,7 @@
     </div>
   </div>
   <div>
-    <KeepModal />
+    <KeepDetails />
   </div>
 </template>
 
