@@ -131,7 +131,9 @@ export default {
 .carddiv {
   border-radius: 10px;
 }
-
+.image {
+  border-radius: 50px;
+}
 .name {
   font-size: 1.7vw;
   color: rgb(255, 255, 255);

@@ -3,7 +3,7 @@
     <div class="row text-center my-5">
       <h1>{{ vault.name }}</h1>
       <p class="m-0">{{ vault.description }}</p>
-      <i class="mdi mdi-trash-can" @click="deleteVault"></i>
+      <i class="selectable mdi mdi-trash-can" @click="removeVault"></i>
     </div>
     <div class="row mt-4">
       <div class="col-12 masonry">
@@ -45,9 +45,10 @@ export default {
       router,
       vault: computed(() => AppState.activeVault),
       keeps: computed(() => AppState.keeps),
+
       async removeVault() {
         try {
-          if (await Pop.confirm('Delete vault?', 'cannot undo', 'question')) {
+          if (await Pop.confirm('Are you sure you want to delete this vault?')) {
             await vaultsService.deleteVault(this.vault.id)
             Pop.toast('Vault Deleted!', 'success')
 
@@ -57,7 +58,7 @@ export default {
           })
         } catch (error) {
           logger.error(error)
-          Pop.toast('something wrong', 'error')
+          Pop.toast('This is not your vault to delete.')
         }
       }
     }

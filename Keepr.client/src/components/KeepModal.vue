@@ -56,7 +56,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
                       <li
-                        @click="addToVault(v.id)"
+                        @click="addKeepToVault(v.id)"
                         v-for="v in userVaults"
                         :key="v.id"
                         class="selectable my-1"
@@ -151,7 +151,7 @@ export default {
       },
       async deleteKeep() {
         try {
-          if (await Pop.confirm('Are you sure you want to delete this Keep?', 'This Cannot be undone', 'question')) {
+          if (await Pop.confirm('Are you sure you want to delete this Keep?')) {
             await keepsService.deleteKeep(this.keep.id)
           }
           Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
@@ -159,7 +159,7 @@ export default {
         } catch (error) {
           logger.error(error)
           Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
-          Pop.toast('Something went wrong', 'error')
+          Pop.toast('error')
         }
       }
     }
