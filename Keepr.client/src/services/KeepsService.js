@@ -3,47 +3,39 @@ import { logger } from "../utils/Logger"
 import { api } from "./AxiosService"
 
 class KeepsService {
-    async getAll() {
-        const res = await api.get("api/keeps")
+    async getAllKeeps() {
+        const res = await api.get('api/keeps')
+        logger.log(res.data)
         AppState.keeps = res.data
     }
-    async getByVaultKeeps(vaultId) {
-        const res = await api.get("api/vaults/" + vaultId + "/keeps")
-        AppState.activeVaultKeeps = res.data
-    }
-    async getKeepById(id) {
-        const res = await api.get("api/keeps/" + id)
+    async setActive(keep) {
+        const res = await api.get('api/keeps/' + keep.id)
+        logger.log(res.data)
         AppState.activeKeep = res.data
     }
-    async createKeep(newKeep) {
-        const res = await api.post("api/keeps", newKeep)
-        AppState.activeProfKeeps.push(res.data)
-    }
-    async removeKeep(id) {
-        const res = await api.delete("api/keeps/" + id)
-        let newKeeps = AppState.keeps?.filter(k => k.id !== id)
-        AppState.keeps = newKeeps
-        let newActProfKeeps = AppState.activeProfKeeps?.filter(k => k.id !== id)
-        AppState.activeProfKeeps = newActProfKeeps
 
-        let newActvaultKeeps = AppState.activeVaultKeeps?.filter(k => k.id !== id)
-        AppState.activeVaultKeeps = newActvaultKeeps
+    async getUserKeeps(id) {
+        const res = await api.get('api/profiles/' + id + '/keeps')
+        logger.log(res.data)
+        AppState.keeps = res.data
     }
-    async addKeepToVault(keepId, vaultId) {
-        await api.post("api/vaultkeeps", { keepId: keepId, vaultId: vaultId })
-    }
-    async removeKeepFromVault(id) {
-        const res = await api.delete("api/vaultkeeps/" + id)
-        let newVK = AppState.activeVaultKeeps.filter(k => k.vaultKeepId !== id)
-        AppState.activeVaultKeeps = newVK
+    async getMyKeeps() {
+        const accountId = AppState.account.id
+        const res = await api.get('api/profiles/' + accountId + '/keeps')
+        logger.log(res.data)
+        AppState.keeps = res.data
     }
 
+    async createKeep(keep) {
+        const res = await api.post('api/keeps', keep)
+        logger.log(res.data)
+        AppState.keeps.push(res.data)
+    }
 
-    async editKeep(id, input) {
-        const res = await api.put("api/keeps/" + id, input)
-
-        AppState.activeKeep = res.data
+    async deleteKeep(keepId) {
+        const res = await api.delete('api/keeps/' + keepId)
+        logger.log(res.data)
+        AppState.keeps = AppState.keeps.filter(k => k.id != keepId)
     }
 }
-
 export const keepsService = new KeepsService()

@@ -1,9 +1,9 @@
 <template>
   <div
-    class="card bg-dark text-white rounded elevation-2 grad selectable"
+    class="card carddiv text-white elevation-2 selectable"
     @click.stop="setActive"
   >
-    <img :src="keep.img" class="card-img" alt="keep img" />
+    <img :src="keep.img" class="card-img carddiv" alt="keep img" />
     <div
       class="
         card-img-overlay
@@ -129,11 +129,9 @@ export default {
     1px 1px 0 #000;
 }
 .carddiv {
-  border-radius: 50px;
+  border-radius: 10px;
 }
-.image {
-  border-radius: 50px;
-}
+
 .name {
   font-size: 1.7vw;
   color: rgb(255, 255, 255);

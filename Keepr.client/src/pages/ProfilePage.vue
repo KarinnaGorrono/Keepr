@@ -2,12 +2,16 @@
   <div class="container-fluid">
     <div class="row mt-5">
       <div class="col-2">
-        <img class="rounded object-cover-fit" :src="account.picture" alt="" />
+        <img
+          class="rounded object-cover-fit"
+          :src="activeUser?.picture"
+          alt=""
+        />
       </div>
       <div class="col-3">
         <div class="row">
           <div class="col-12">
-            <h1>{{ account.name?.split("@")[0] }}</h1>
+            <h1>{{ activeUser.name?.split("@")[0] }}</h1>
           </div>
           <div class="col-12">
             <h4>
@@ -24,19 +28,11 @@
     </div>
     <div class="row mt-5">
       <div class="col-12">
-        <h3>
-          Vaults
-          <i
-            title="create vault"
-            class="mdi mdi-plus text-success selectable"
-            data-bs-toggle="modal"
-            data-bs-target="#create-vault-modal"
-          ></i>
-        </h3>
+        <h3>Vaults</h3>
       </div>
       <div class="col-12">
         <div class="row ms-4">
-          <div class="col-2 my-2" v-for="v in vaults" :key="v.id">
+          <div class="col-2" v-for="v in vaults" :key="v.id">
             <Vault :vault="v" />
           </div>
         </div>
@@ -44,15 +40,7 @@
     </div>
     <div class="row mt-5">
       <div class="col-12">
-        <h3>
-          Keeps
-          <i
-            data-bs-toggle="modal"
-            data-bs-target="#create-keep-modal"
-            title="create vault"
-            class="mdi mdi-plus text-success selectable"
-          ></i>
-        </h3>
+        <h3>Keeps</h3>
       </div>
       <div class="col-12">
         <div class="row ms-4">
@@ -67,9 +55,7 @@
       </div>
     </div>
   </div>
-  <CreateVaultModal />
   <KeepModal />
-  <CreateKeepModal />
 </template>
 
 
@@ -86,20 +72,22 @@ import Pop from '../utils/Pop'
 export default {
   components: { Vault },
   setup() {
+    const route = useRoute()
     onMounted(async () => {
       try {
-        await vaultsService.getUserVaults()
-        await keepsService.getMyKeeps()
+        await vaultsService.getProfileVaults(route.params.id)
+        await keepsService.getUserKeeps(route.params.id)
+        await accountService.getProfile(route.params.id)
+
       } catch (error) {
         logger.error(error)
         Pop.toast(error, 'error')
       }
     })
     return {
-      account: computed(() => AppState.account),
+      ActiveUser: computed(() => AppState.ActiveUser),
       keeps: computed(() => AppState.keeps),
-      vaults: computed(() => AppState.userVaults),
-      vaultKeeps: computed(() => AppState.vaultKeeps)
+      vaults: computed(() => AppState.vaults),
     }
   }
 }
@@ -108,13 +96,11 @@ export default {
 
 <style lang="scss" scoped>
 .masonry {
-  /* Masonry container */
   column-count: 4;
   column-gap: 1em;
 }
 
 .item {
-  /* Masonry bricks or child elements */
   background-color: #eee;
   display: inline-block;
   margin: 0 0 1em;
