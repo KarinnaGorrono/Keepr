@@ -1,7 +1,7 @@
 <template>
   <div
     class="card carddiv text-white elevation-2 selectable"
-    @click.stop="setActive"
+    @click.stop="setActiveKeep"
   >
     <img :src="keep.img" class="card-img carddiv" alt="keep img" />
     <div
@@ -19,7 +19,7 @@
           v-if="route.name === 'Vault'"
           title="remove from vault"
           class="btn btn-danger"
-          @click="removeFromVault"
+          @click="removeKeepFromVault"
         >
           Remove from Vault
         </button>
@@ -32,7 +32,7 @@
           route.name != 'Account'
         "
       >
-        <div @click.stop="routeAcct">
+        <div @click.stop="routeToAccount">
           <img
             :src="keep.creator?.picture"
             alt="user photo"
@@ -48,7 +48,7 @@
           keep.creatorId != account.id
         "
       >
-        <div @click.stop="routeProfile">
+        <div @click.stop="routeToProfile">
           <img
             :src="keep.creator?.picture"
             alt="user photo"
@@ -82,9 +82,9 @@ export default {
     return {
       route,
       account: computed(() => AppState.account),
-      async setActive() {
+      async setActiveKeep() {
         try {
-          await keepsService.setActive(props.keep)
+          await keepsService.setActiveKeep(props.keep)
           if (document.getElementById("keep-modal")) {
             Modal.getOrCreateInstance(document.getElementById("keep-modal")).toggle()
           }
@@ -92,13 +92,13 @@ export default {
           logger.error(error)
         }
       },
-      routeProfile() {
+      routeToProfile() {
         router.push({
           name: 'Profile',
           params: { id: `${props.keep.creatorId}` }
         })
       },
-      routeAcct() {
+      routeToAccount() {
         router.push({
           name: 'Account',
         })
@@ -109,7 +109,7 @@ export default {
           Pop.toast('Keep removed from vault', 'success')
         } catch (error) {
           logger.error(error)
-          Pop.toast('Something went wrong', 'error')
+          Pop.toast('error')
         }
       }
     }
@@ -129,7 +129,7 @@ export default {
     1px 1px 0 #000;
 }
 .carddiv {
-  border-radius: 10px;
+  border-radius: 0px;
 }
 .image {
   border-radius: 50px;

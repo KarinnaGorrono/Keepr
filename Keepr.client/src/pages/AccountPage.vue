@@ -1,20 +1,20 @@
 <template>
   <div class="container-fluid">
     <div class="row mt-5">
-      <div class="col-2">
+      <div class="col-md-2">
         <img class="rounded object-cover-fit" :src="account.picture" alt="" />
       </div>
-      <div class="col-3">
+      <div class="col-md-3">
         <div class="row">
-          <div class="col-12">
+          <div class="col-md-12">
             <h1>{{ account.name?.split("@")[0] }}</h1>
           </div>
-          <div class="col-12">
+          <div class="col-md-12">
             <h4>
               Keeps: <span>{{ keeps?.length }}</span>
             </h4>
           </div>
-          <div class="col-12">
+          <div class="col-md-12">
             <h4>
               Vaults: <span>{{ vaults?.length }}</span>
             </h4>
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="row mt-5">
-      <div class="col-12">
+      <div class="col-md-12">
         <h3>
           Vaults
           <i
@@ -34,16 +34,16 @@
           ></i>
         </h3>
       </div>
-      <div class="col-12">
+      <div class="col-md-12">
         <div class="row ms-4">
-          <div class="col-2 my-2" v-for="v in vaults" :key="v.id">
+          <div class="col-md-2 my-2" v-for="v in vaults" :key="v.id">
             <Vault :vault="v" />
           </div>
         </div>
       </div>
     </div>
     <div class="row mt-5">
-      <div class="col-12">
+      <div class="col-md-12">
         <h3>
           Keeps
           <i
@@ -54,11 +54,11 @@
           ></i>
         </h3>
       </div>
-      <div class="col-12">
+      <div class="col-md-12">
         <div class="row ms-4">
-          <div class="col-12 masonry">
-            <div class="item" v-for="k in keeps" :key="k.id">
-              <div class="content">
+          <div class="col-md-12 masonry-with-columns">
+            <div class="keep" v-for="k in keeps" :key="k.id">
+              <div>
                 <Keep :keep="k" />
               </div>
             </div>
@@ -77,11 +77,8 @@
 import { computed, onMounted } from '@vue/runtime-core'
 import { vaultsService } from '../services/VaultsService'
 import { keepsService } from '../services/KeepsService'
-import { useRoute } from 'vue-router'
-import { accountService } from '../services/AccountService'
 import { AppState } from '../AppState'
 import Vault from '../components/Vault.vue'
-import { Modal } from 'bootstrap'
 import Pop from '../utils/Pop'
 export default {
   components: { Vault },
@@ -107,12 +104,12 @@ export default {
 
 
 <style lang="scss" scoped>
-.masonry {
+.masonry-with-columns {
   column-count: 4;
   column-gap: 1em;
 }
 
-.item {
+.keep {
   background-color: #eee;
   display: inline-block;
   margin: 0 0 1em;

@@ -5,7 +5,7 @@
     aria-labelledby="Modal"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-height centered">
       <div class="modal-content">
         <div class="modal-body">
           <slot name="modal-body"></slot>
@@ -26,8 +26,7 @@ export default {
 
 
 <style lang="scss" scoped>
-.modal-dialog {
-  height: 80% !important;
-  padding-top: 10%;
+.modal-height {
+  height: 50% !important;
 }
 </style>

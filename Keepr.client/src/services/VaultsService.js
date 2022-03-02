@@ -9,7 +9,6 @@ class VaultsService {
         AppState.userVaults = res.data
     }
 
-
     async getKeepsByVaultID(vaultId) {
         const res = await api.get('api/vaults/' + vaultId + '/keeps')
         logger.log("Keeps in Vaults", res.data)
@@ -20,16 +19,10 @@ class VaultsService {
     setActiveVault(vault) {
         AppState.activeVault = vault
     }
-    async createVault(vaultData) {
-        const res = await api.post('api/vaults', vaultData)
+    async createVault(vault) {
+        const res = await api.post('api/vaults', vault)
         logger.log(res.data)
         AppState.userVaults.push(res.data)
-    }
-
-    async deleteVault(vaultId) {
-        const res = await api.delete('api/vaults/' + vaultId)
-        logger.log(res.data)
-        AppState.activeVault = {}
     }
 
     async getProfileVaults(id) {
@@ -37,6 +30,12 @@ class VaultsService {
         logger.log("Profile Vaults", res.data)
         AppState.vaults = res.data
     }
+    async deleteVault(vaultId) {
+        const res = await api.delete('api/vaults/' + vaultId)
+        logger.log(res.data)
+        AppState.activeVault = {}
+    }
+
     async getVaultById(vaultId) {
         const res = await api.get('api/vaults/' + vaultId)
         logger.log(res.data)

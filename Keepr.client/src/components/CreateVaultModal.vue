@@ -13,27 +13,25 @@
           />
         </div>
         <div class="mb-3">
-          <label for="vaultDesc" class="form-label">Vault Description</label>
+          <label for="Description" class="form-label">Vault Description</label>
           <textarea
             class="form-control"
-            id="vaultDesc"
+            id="Description"
             rows="3"
             v-model="vaultData.description"
           ></textarea>
         </div>
-        <div class="form-check form-switch">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            role="switch"
-            v-model="vaultData.isPrivate"
-            id="vaultPrivate"
-          />
-          <label class="form-check-label" for="vaultPrivate"
-            >Private Vault</label
-          >
-        </div>
       </form>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          v-model="vaultData.isPrivate"
+          id="vaultPrivate"
+        />
+        <label class="form-check-label" for="vaultPrivate">Private Vault</label>
+      </div>
       <div class="text-end">
         <button
           title="Create Vault"
@@ -67,7 +65,7 @@ export default {
         } catch (error) {
           logger.error(error)
           Modal.getOrCreateInstance(document.getElementById("create-vault-modal")).hide()
-          Pop.toast('Somthing Went Wrong!', 'error')
+          Pop.toast('Dont forget to input all info !', 'error')
         }
       }
     }

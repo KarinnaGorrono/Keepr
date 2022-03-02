@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { computed, onBeforeUnmount, onMounted } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { keepsService } from '../services/KeepsService'
 import { AppState } from '../AppState'
 import Pop from '../utils/Pop'
@@ -50,7 +50,7 @@ export default {
   width: 100%;
 }
 @media only screen and (max-width: 500px) {
-  .masonry {
+  .masonry-with-columns {
     column-count: 2;
     column-gap: 1em;
   }

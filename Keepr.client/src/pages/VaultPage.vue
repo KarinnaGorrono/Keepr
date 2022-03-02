@@ -6,8 +6,8 @@
       <i class="selectable mdi mdi-trash-can" @click="removeVault"></i>
     </div>
     <div class="row mt-4">
-      <div class="col-12 masonry">
-        <div class="item" v-for="k in keeps" :key="k.id">
+      <div class="col-md-12 masonry-with-columns">
+        <div class="keep" v-for="k in keeps" :key="k.id">
           <div class="content">
             <Keep :keep="k" />
           </div>
@@ -50,7 +50,7 @@ export default {
         try {
           if (await Pop.confirm('Are you sure you want to delete this vault?')) {
             await vaultsService.deleteVault(this.vault.id)
-            Pop.toast('Vault Deleted!', 'success')
+            Pop.toast('Vault Deleted!')
 
           }
           router.push({
@@ -68,12 +68,12 @@ export default {
 
 
 <style lang="scss" scoped>
-.masonry {
+.masonry-with-columns {
   column-count: 4;
   column-gap: 1em;
 }
 
-.item {
+.keep {
   background-color: #eee;
   display: inline-block;
   margin: 0 0 1em;
