@@ -2,7 +2,7 @@
   <nav
     class="
       navbarColor
-      navbar navbar-expand-lg navbar-dark
+      navbar navbar-expand-lg
       px-3
       d-flex
       justify-content-between
@@ -10,21 +10,21 @@
     "
   >
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
+      <div class="d-flex flex-column align-items-center text-light">
         <h1>KEEPER</h1>
       </div>
     </router-link>
 
     <span class="navbar-text">
       <button
-        class="btn selectable text-dark text-uppercase my-2 my-lg-0 border-dark"
+        class="btn selectable text-dark text-uppercase my-2"
         @click="login"
         v-if="!user.isAuthenticated"
       >
         Login
       </button>
 
-      <div class="dropdown my-2 my-lg-0" v-else>
+      <div class="dropdown my-2" v-else>
         <div
           class="dropdown-toggle selectable rounded"
           data-bs-toggle="dropdown"

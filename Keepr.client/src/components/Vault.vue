@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card bg-dark text-white rounded elevation-2 grad selectable"
+    class="card bg-dark text-white rounded elevation-2 selectable"
     @click="setActiveVault"
   >
     <div class="text-center">
@@ -33,13 +33,8 @@ export default {
 
 
 <style lang="scss" scoped>
-.grad {
-  background-image: linear-gradient(black);
-}
 .title-text {
   font-weight: 800;
   color: white;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
 }
 </style>

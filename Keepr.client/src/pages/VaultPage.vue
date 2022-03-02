@@ -1,9 +1,15 @@
 <template>
   <div class="container-fluid">
-    <div class="row text-center my-5">
-      <h1>{{ vault.name }}</h1>
-      <p class="m-0">{{ vault.description }}</p>
-      <i class="selectable mdi mdi-trash-can" @click="removeVault"></i>
+    <div class="row d-flex justify-content-end my-5">
+      <div class="col-md-10">
+        <h1>{{ vault.name }}</h1>
+        <p class="m-0">{{ vault.description }}</p>
+      </div>
+      <div class="col-md-2">
+        <button class="selectable btn btn-danger" @click="removeVault">
+          Delete Vault
+        </button>
+      </div>
     </div>
     <div class="row mt-4">
       <div class="col-md-12 masonry-with-columns">
