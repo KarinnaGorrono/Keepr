@@ -17,6 +17,11 @@ const routes = [
     component: loadPage('AboutPage')
   },
   {
+    path: '/profile/:id',
+    name: 'Profile',
+    component: loadPage('ProfilePage')
+  },
+  {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
@@ -28,11 +33,6 @@ const routes = [
     component: loadPage('VaultPage'),
     beforeEnter: authSettled
   },
-  {
-    path: '/profile/:id',
-    name: 'Profile',
-    component: loadPage('ProfilePage')
-  }
 ]
 
 export const router = createRouter({
