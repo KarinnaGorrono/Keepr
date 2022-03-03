@@ -65,14 +65,18 @@
                       </li>
                     </ul>
                   </div>
+
                   <div class="col-1">
+                    <!-- ----------------------- -->
                     <i
                       title="delete keep"
                       class="mdi mdi-trash-can mdi-24px selectable"
                       @click="removeKeep"
                       v-if="account.id === keep.creatorId"
                     ></i>
+                    <!-- ----------------------------------- -->
                   </div>
+
                   <div class="col-4">
                     <div class="row align-items-end">
                       <div

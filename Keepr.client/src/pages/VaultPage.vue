@@ -6,9 +6,18 @@
         <p class="m-0">{{ vault.description }}</p>
       </div>
       <div class="col-md-2">
-        <button class="selectable btn btn-danger" @click="removeVault">
-          Delete Vault
-        </button>
+        <!-- WAT?????? -->
+        <div>
+          <button
+            class="selectable btn btn-danger"
+            v-if="account.id === vault.creatorId"
+            @click="removeVault"
+          >
+            Delete Vault
+          </button>
+        </div>
+
+        <!-- v-if="account.id === vault.creatorId" -->
       </div>
     </div>
     <div class="row mt-4">
@@ -51,6 +60,8 @@ export default {
       router,
       vault: computed(() => AppState.activeVault),
       keeps: computed(() => AppState.keeps),
+      account: computed(() => AppState.account),
+
 
       async removeVault() {
         try {

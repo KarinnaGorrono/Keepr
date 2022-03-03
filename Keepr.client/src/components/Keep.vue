@@ -16,11 +16,12 @@
       <div class="text-center">
         <h5 class="card-title title-text">{{ keep.name }}</h5>
         <button
-          v-if="route.name === 'Vault'"
           title="remove from vault"
           class="btn btn-danger"
+          v-if="route.name === 'Vault' && account.id === vault.creatorId"
           @click="removeKeepFromVault"
         >
+          <!-- && account.id === vaultKeeps.creatorId -->
           Remove from Vault
         </button>
       </div>
@@ -84,6 +85,7 @@ export default {
     return {
       route,
       account: computed(() => AppState.account),
+      vault: computed(() => AppState.activeVault),
       async setActiveKeep() {
         try {
           await keepsService.setActiveKeep(props.keep)
@@ -129,8 +131,6 @@ export default {
 .title-text {
   font-weight: 800;
   color: white;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
 }
 .carddiv {
   border-radius: 0px;
@@ -141,20 +141,5 @@ export default {
 .name {
   font-size: 1.7vw;
   color: rgb(255, 255, 255);
-}
-.profpic {
-  height: 2.3vw;
-  width: 2.3vw;
-  border-radius: 50%;
-  object-fit: cover;
-}
-@media only screen and (max-width: 500px) {
-  .name {
-    font-size: 2vh;
-  }
-  .profpic {
-    height: 3vh;
-    width: 3vh;
-  }
 }
 </style>
