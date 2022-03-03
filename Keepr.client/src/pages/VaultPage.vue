@@ -54,9 +54,9 @@ export default {
 
       async removeVault() {
         try {
-          if (await Pop.confirm('Are you sure you want to delete this vault?')) {
-            await vaultsService.deleteVault(this.vault.id)
-            Pop.toast('Vault Deleted!')
+          if (await Pop.confirm('Are you sure you want to delete this?')) {
+            await vaultsService.removeVault(this.vault.id)
+            Pop.toast('Vault has been deleted!')
 
           }
           router.push({
@@ -64,7 +64,7 @@ export default {
           })
         } catch (error) {
           logger.error(error)
-          Pop.toast('This is not your vault to delete.')
+          Pop.toast('Not your vault to delete.')
         }
       }
     }

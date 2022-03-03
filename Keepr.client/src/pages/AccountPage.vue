@@ -85,7 +85,7 @@ export default {
   setup() {
     onMounted(async () => {
       try {
-        await vaultsService.getUserVaults()
+        await vaultsService.getVaultsForUser()
         await keepsService.getMyKeeps()
       } catch (error) {
         logger.error(error)

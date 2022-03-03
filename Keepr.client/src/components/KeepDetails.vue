@@ -69,7 +69,7 @@
                     <i
                       title="delete keep"
                       class="mdi mdi-trash-can mdi-24px selectable"
-                      @click="deleteKeep"
+                      @click="removeKeep"
                       v-if="account.id === keep.creatorId"
                     ></i>
                   </div>
@@ -142,19 +142,19 @@ export default {
         try {
           await vaultsService.addKeepToVault(this.keep.id, vaultId)
 
-          Pop.toast('Keep Added to Vault!', 'success')
+          Pop.toast('The keep has was successsfully added!')
         } catch (error) {
           logger.error(error)
           Pop.toast(error, 'error')
         }
       },
-      async deleteKeep() {
+      async removeKeep() {
         try {
-          if (await Pop.confirm('Are you sure you want to delete this Keep?')) {
-            await keepsService.deleteKeep(this.keep.id)
+          if (await Pop.confirm('Are you sure ?')) {
+            await keepsService.removeKeep(this.keep.id)
           }
           Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
-          Pop.toast('Keep Deleted!', 'success')
+          Pop.toast('Keep has been deleted!')
         } catch (error) {
           logger.error(error)
           Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()

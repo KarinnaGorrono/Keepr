@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="row mt-5">
+    <div class="row mt-3">
       <div class="col-md-2">
         <img
           class="rounded object-cover-fit"
@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="row mt-5">
+    <div class="row mt-4">
       <div class="col-md-12">
         <h3>Vaults</h3>
       </div>
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <div class="row mt-5">
+    <div class="row mt-4">
       <div class="col-md-12">
         <h3>Keeps</h3>
       </div>
@@ -75,8 +75,8 @@ export default {
     const route = useRoute()
     onMounted(async () => {
       try {
-        await vaultsService.getProfileVaults(route.params.id)
-        await keepsService.getUserKeeps(route.params.id)
+        await vaultsService.getVaultsForProfile(route.params.id)
+        await keepsService.getKeepsForUser(route.params.id)
         await accountService.getProfile(route.params.id)
 
       } catch (error) {

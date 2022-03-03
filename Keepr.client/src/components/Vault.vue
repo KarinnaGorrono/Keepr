@@ -1,7 +1,7 @@
 <template>
   <div
     class="card bg-dark text-white rounded elevation-2 selectable"
-    @click="setActiveVault"
+    @click="currentVault"
   >
     <div class="text-center">
       <h5 class="card-title title-text">{{ vault.name }}</h5>
@@ -20,7 +20,7 @@ export default {
     const router = useRouter()
     return {
       router,
-      setActiveVault() {
+      currentVault() {
         router.push({
           name: 'Vault',
           params: { id: `${props.vault.id}` }
