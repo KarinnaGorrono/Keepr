@@ -6,6 +6,12 @@
       </div>
       <div class="col-md-3">
         <div class="row">
+          <!-- 
+ <div class="justified">
+            <div class="d-flex">
+              <p class="font m-0 username">{{ activeProfile.name }}</p>
+              <i -->
+
           <div class="col-md-12">
             <h1>{{ account.name?.split("@")[0] }}</h1>
           </div>
@@ -22,6 +28,7 @@
         </div>
       </div>
     </div>
+    <!-- Vaults start here -->
     <div class="row mt-5">
       <div class="col-md-12">
         <h3>
@@ -32,6 +39,7 @@
             data-bs-toggle="modal"
             data-bs-target="#create-vault-modal"
           ></i>
+          <i> </i>
         </h3>
       </div>
       <div class="col-md-12">
@@ -41,7 +49,9 @@
           </div>
         </div>
       </div>
+      <div></div>
     </div>
+    <!-- Keeps start here -->
     <div class="row mt-5">
       <div class="col-md-12">
         <h3>
@@ -74,11 +84,11 @@
 
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
 import { vaultsService } from '../services/VaultsService'
+import { computed, onMounted } from '@vue/runtime-core'
+import Vault from '../components/Vault.vue'
 import { keepsService } from '../services/KeepsService'
 import { AppState } from '../AppState'
-import Vault from '../components/Vault.vue'
 import Pop from '../utils/Pop'
 export default {
   components: { Vault },

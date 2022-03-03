@@ -3,25 +3,47 @@
     <template #modal-body>
       <form>
         <div class="mb-3">
-          <label for="vaultName" class="form-label">Vault Name</label>
+          <label for="title" class="form-label">Title</label>
           <input
             type="text"
             v-model="vaultData.name"
             class="form-control"
-            id="vaultName"
-            placeholder="Name..."
+            id="title"
+            placeholder="Title.."
           />
         </div>
+        <!-- Image not populating for vault yet -->
         <div class="mb-3">
-          <label for="Description" class="form-label">Vault Description</label>
+          <label for="image" class="form-label">Image Url</label>
+          <input
+            type="text"
+            v-model="vaultData.img"
+            class="form-control"
+            id="image"
+            placeholder="URL..."
+          />
+        </div>
+        <!-- <div class="mb-3">
+          <label for="image" class="form-label">URL</label>
+          <input
+            type="text"
+       
+            id="image"
+            placeholder="URL..."
+          />
+        </div> -->
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
           <textarea
             class="form-control"
-            id="Description"
+            id="description"
             rows="3"
             v-model="vaultData.description"
           ></textarea>
         </div>
       </form>
+
       <div class="form-check form-switch">
         <input
           class="form-check-input"
@@ -64,7 +86,6 @@ export default {
           Pop.toast('Vault Created!', 'success')
         } catch (error) {
           logger.error(error)
-          Modal.getOrCreateInstance(document.getElementById("create-vault-modal")).hide()
           Pop.toast('Dont forget to input all info !', 'error')
         }
       }

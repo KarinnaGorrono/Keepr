@@ -63,15 +63,17 @@
 
 
 <script>
-import { Modal } from 'bootstrap'
-import { keepsService } from '../services/KeepsService'
+import { useRoute, useRouter } from 'vue-router'
 import { logger } from '../utils/Logger'
+import { Modal } from 'bootstrap'
+import { vaultsService } from '../services/VaultsService'
 import { computed } from '@vue/reactivity'
 import { AppState } from '../AppState'
-import { useRoute, useRouter } from 'vue-router'
-import { vaultsService } from '../services/VaultsService'
+import { keepsService } from '../services/KeepsService'
 
 import Pop from '../utils/Pop'
+
+
 export default {
   props: {
     keep: { type: Object, required: true }
@@ -98,11 +100,6 @@ export default {
           params: { id: `${props.keep.creatorId}` }
         })
       },
-      routeToAccount() {
-        router.push({
-          name: 'Account',
-        })
-      },
       async removeKeepFromVault() {
         try {
           await vaultsService.removeKeepFromVault(props.keep.vaultKeepId)
@@ -111,7 +108,17 @@ export default {
           logger.error(error)
           Pop.toast('error')
         }
-      }
+      },
+
+      routeToAccount() {
+        router.push({
+          name: 'Account',
+        })
+      },
+
+
+
+
     }
   }
 }
@@ -119,9 +126,6 @@ export default {
 
 
 <style lang="scss" scoped>
-.grad {
-  background-image: linear-gradient(black);
-}
 .title-text {
   font-weight: 800;
   color: white;

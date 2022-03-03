@@ -3,32 +3,32 @@
     <template #modal-body>
       <form>
         <div class="mb-3">
-          <label for="keepName" class="form-label">Keep Name</label>
+          <label for="title" class="form-label">Title</label>
           <input
             type="text"
             v-model="keepData.name"
             class="form-control"
-            id="keepName"
-            placeholder="Name..."
+            id="title"
+            placeholder=""
           />
         </div>
         <div class="mb-3">
-          <label for="keepDesc" class="form-label">keep Description</label>
+          <label for="description" class="form-label">Description</label>
           <textarea
             class="form-control"
-            id="keepDesc"
+            id="description"
             rows="3"
             v-model="keepData.description"
           ></textarea>
         </div>
         <div class="mb-3">
-          <label for="keepImg" class="form-label">Keep Image</label>
+          <label for="image" class="form-label">Image Url</label>
           <input
             type="text"
             v-model="keepData.img"
             class="form-control"
-            id="keepImg"
-            placeholder="Image URL..."
+            id="image"
+            placeholder="URL..."
           />
         </div>
       </form>
