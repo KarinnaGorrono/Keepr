@@ -1,22 +1,16 @@
 <template>
   <div
-    class="card carddiv text-white elevation-2 selectable"
+    class="card cardRound text-white elevation-2 selectable"
     @click.stop="setActiveKeep"
   >
-    <img :src="keep.img" class="card-img carddiv" alt="keep img" />
+    <img :src="keep.img" class="card-img cardRound" alt="Image for keep" />
     <div
-      class="
-        card-img-overlay
-        grad
-        d-flex
-        align-items-end
-        justify-content-between
-      "
+      class="card-img-overlay d-flex align-items-end justify-content-between"
     >
       <div class="text-center">
-        <h5 class="card-title title-text">{{ keep.name }}</h5>
+        <h5 class="card-title Text">{{ keep.name }}</h5>
         <button
-          title="remove from vault"
+          title="Delete from vault"
           class="btn btn-danger"
           v-if="route.name === 'Vault' && account.id === vault.creatorId"
           @click="removeKeepFromVault"
@@ -36,7 +30,7 @@
         <div @click.stop="routeToAccount">
           <img
             :src="keep.creator?.picture"
-            alt="user photo"
+            alt="picture"
             height="40"
             class="rounded"
           />
@@ -52,7 +46,7 @@
         <div @click.stop="routeToProfile">
           <img
             :src="keep.creator?.picture"
-            alt="user photo"
+            alt="picture"
             height="40"
             class="rounded"
           />
@@ -128,11 +122,11 @@ export default {
 
 
 <style lang="scss" scoped>
-.title-text {
+.Text {
   font-weight: 800;
   color: white;
 }
-.carddiv {
+.cardRound {
   border-radius: 0px;
 }
 .image {

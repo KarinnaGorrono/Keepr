@@ -4,7 +4,7 @@
     @click="currentVault"
   >
     <div class="text-center">
-      <h5 class="card-title title-text">{{ vault.name }}</h5>
+      <h5 class="Text">{{ vault.name }}</h5>
     </div>
   </div>
 </template>
@@ -25,7 +25,13 @@ export default {
           name: 'Vault',
           params: { id: `${props.vault.id}` }
         })
+
+      },
+
+      test() {
+        logger.log
       }
+
     }
   }
 }
@@ -33,7 +39,7 @@ export default {
 
 
 <style lang="scss" scoped>
-.title-text {
+.Text {
   font-weight: 800;
   color: white;
 }

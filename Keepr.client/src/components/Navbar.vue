@@ -5,8 +5,8 @@
       navbar navbar-expand-lg
       px-3
       d-flex
-      justify-content-between
       align-items-center
+      justify-content-between
     "
   >
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
@@ -62,11 +62,11 @@
 </template>
 
 <script>
-import { AuthService } from '../services/AuthService'
 import { AppState } from '../AppState'
 import { computed } from 'vue'
+import { AuthService } from '../services/AuthService'
 import { useRouter } from 'vue-router'
-import { Offcanvas } from 'bootstrap'
+
 export default {
   setup() {
     const router = useRouter()
@@ -83,7 +83,7 @@ export default {
         router.push({
           name: route,
         })
-        Offcanvas.getOrCreateInstance(document.getElementById("offcanvasNavbar")).hide()
+
       }
     }
   }
@@ -105,16 +105,5 @@ export default {
 }
 .hoverable {
   cursor: pointer;
-}
-a:hover {
-  text-decoration: none;
-}
-.nav-link {
-  text-transform: uppercase;
-}
-.navbar-nav .router-link-exact-active {
-  border-bottom: 2px solid var(--bs-success);
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
 }
 </style>
